@@ -12,11 +12,6 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 
-
-
-
-
-
 db = firebase.firestore()
 
 firebase.auth().onAuthStateChanged(function (user) {
@@ -67,4 +62,6 @@ var chart = new Chart(ctx, {
 
     // Configuration options go here
     options: {}
-});
+})
+
+
