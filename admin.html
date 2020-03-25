@@ -15,8 +15,7 @@
     <!-- Dameonite / Bootstrap--><link rel="stylesheet" href="daemonite/material.min.css">
     <!-- Waves --><link rel="stylesheet" href="daemonite/waves.min.css">
     <!-- Snackbar --><link rel="stylesheet" href="daemonite/snackbar.min.css">
-    <!-- Chart --> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
-  <link rel="stylesheet" href="css/style.css">
+
 
 </head>
 <body id="body" style="font-family: Roboto">
@@ -25,35 +24,66 @@
     <div class="modal fade bd-example-modal-sm" id="errorModal" tabindex="-1" role="dialog" aria-hidden="true"><div class="modal-dialog modal-sm" role="document"><div class="modal-content"><div class="modal-header"><h3>Error</h3></div><h5 id="erorrModalMsg" class="modal-body">Unable to complete process.</h5><div class="modal-footer"><button type="button" class="waves btn-old-text" data-dismiss="modal">dismiss</button></div></div></div></div>
     <div style="z-index: 20000049108509173268563785623467823478623478278997819871982498714;" class="modal fade bd-example-modal-sm" id="eonloaderelement" tabindex="-1" role="dialog" aria-hidden="true"><div class="modal-dialog modal-sm modal-dialog-centered" role="document"><div style="display: inline-block; border-radius: 400px; width: 150px" class="modal-content centered"><div class="modal-body"><center><div class="progress-circular"><div class="progress-circular-wrapper"><div class="progress-circular-inner"><div class="progress-circular-left"><div class="progress-circular-spinner"></div></div><div class="progress-circular-gap"></div><div class="progress-circular-right"><div class="progress-circular-spinner"></div></div></div></div></div></center></div></div></div></div>
 
+    <div class="modal fade" id="setmodal" tabindex="-1" role="dialog" aria-hidden="true"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><h3>Create Set</h3></div><div class="modal-body">
+
+      <br><br>
+  
+   
+      <div class="floating-label textfield-box">
+          <label for="set1">Set Name</label>
+          <input class="form-control" id="set1" placeholder="example: Squat Series" type="text">
+        </div>
+  
+        <br><br>
+  
+        <div class="floating-label textfield-box">
+          <label for="set2">Notes</label>
+          <textarea class="form-control" id="set2" placeholder="example: Speak with coach to find variation for you." type="text"></textarea>
+        </div>
+  
+        <br><br>
+  
+        <div class="floating-label textfield-box">
+          <label for="set3">Rest</label>
+          <input class="form-control" id="set3" type="text"></input>
+        </div>
+  
+        <br><br>
+  
+        <div class="floating-label textfield-box">
+          <label for="set4">Sets</label>
+          <input class="form-control" id="set4" type="text"></input>
+        </div>
+  
+        <br><br>
+  
+        <div class="floating-label textfield-box">
+          <label for="set4">Reps</label>
+          <input class="form-control" id="set4" type="text"></input>
+        </div>
+  
+        <br><br>
+  
+        <div class="floating-label textfield-box">
+          <label for="set5">Reps in Reserve</label>
+          <input class="form-control" id="set5" type="text"></input>
+        </div>
+  
+  
+  <br><br>
+  
+  
+  
+  
+      <br><br>
+  
+    </div><div class="modal-footer"><button type="button" class="waves eon-text" data-dismiss="modal">Cancel</button><button type="button" onclick="createset()" class="waves eon-contained" data-dismiss="modal">create</button></div></div></div></div>
+  
+
 <!-- ===========================--] Content [=================================== -->
     
 
-
-
-<div class="animated fadeIn centered" style="display: none;" id="unsigned">
-  <div class="card">
-    <div class="card-body">
-  <center>
-  
-    <img style="height: 80px; padding: 4px;" src="https://upload.wikimedia.org/wikipedia/en/thumb/7/7a/Upper_Canada_College_Crest.svg/1200px-Upper_Canada_College_Crest.svg.png" alt="">
-    <img style="height: 80px; padding: 12px;" src="assets/logo.png" alt="">
-
-
-<br><br>
-
-<button onclick="signin()" style="outline: none;" type="button" class="google-button waves">
-  <span class="google-button__icon">
-    <svg viewBox="0 0 366 372" xmlns="http://www.w3.org/2000/svg"><path d="M125.9 10.2c40.2-13.9 85.3-13.6 125.3 1.1 22.2 8.2 42.5 21 59.9 37.1-5.8 6.3-12.1 12.2-18.1 18.3l-34.2 34.2c-11.3-10.8-25.1-19-40.1-23.6-17.6-5.3-36.6-6.1-54.6-2.2-21 4.5-40.5 15.5-55.6 30.9-12.2 12.3-21.4 27.5-27 43.9-20.3-15.8-40.6-31.5-61-47.3 21.5-43 60.1-76.9 105.4-92.4z" id="Shape" fill="#EA4335"/><path d="M20.6 102.4c20.3 15.8 40.6 31.5 61 47.3-8 23.3-8 49.2 0 72.4-20.3 15.8-40.6 31.6-60.9 47.3C1.9 232.7-3.8 189.6 4.4 149.2c3.3-16.2 8.7-32 16.2-46.8z" id="Shape" fill="#FBBC05"/><path d="M361.7 151.1c5.8 32.7 4.5 66.8-4.7 98.8-8.5 29.3-24.6 56.5-47.1 77.2l-59.1-45.9c19.5-13.1 33.3-34.3 37.2-57.5H186.6c.1-24.2.1-48.4.1-72.6h175z" id="Shape" fill="#4285F4"/><path d="M81.4 222.2c7.8 22.9 22.8 43.2 42.6 57.1 12.4 8.7 26.6 14.9 41.4 17.9 14.6 3 29.7 2.6 44.4.1 14.6-2.6 28.7-7.9 41-16.2l59.1 45.9c-21.3 19.7-48 33.1-76.2 39.6-31.2 7.1-64.2 7.3-95.2-1-24.6-6.5-47.7-18.2-67.6-34.1-20.9-16.6-38.3-38-50.4-62 20.3-15.7 40.6-31.5 60.9-47.3z" fill="#34A853"/></svg>
-  </span>
-  <span class="google-button__text">Sign in</span>
-</button>
-
-</center>
-</div>
-</div>
-</div>
-
-  <div class="animated fadeIn" style="display: none;" id="signed">
+<div class="animated fadeIn" style="display: none;" id="signed">
   <center>
       <header style='border-radius: 0px 0px 30px 30px; background-color: #ffdbef' class="animated fadeInDown shadow-sm navbar navbar-expand navbar-light flex-column flex-md-row bd-navbar">
           <a class="navbar-brand mr-0 mr-md-2" href="/">
@@ -89,31 +119,41 @@
   
       <br>
   
-  <h1>Home</h1>
-  <h5>Your personal dashboard</h5>
+  <h1>Teacher View</h1>
+  <h5>View and manage all users</h5>
   <hr style="width: 48%">
-  
-  <div class="row">
-  <div class="col-sm">
-  
-          <button onclick="thing()" type="button" style=" height: 38px; border-radius: 208px;" class="animated pulse infinite waves btn-old-primary">+ NEW</button>
-  </div>
-  
-  </div>
   
   <br><br>
   
   <div style="width: 80%" class="card">
       <div class="card-body">
-          <canvas id="myChart"></canvas>
   
-  
-          
-  
-  
+          <h3>Sets</h3>
+          <button data-target="#setmodal" data-toggle="modal" class="waves btn-old-text">New Set</button>
       </div>
   </div>
   
+  <br><br>
+  
+  <div class="card" style="width: 80%">
+  <h3>Day 1</h3>
+  
+  </div>
+  <br><br>
+  
+  
+  <div class="card" style="width: 80%">
+      <h3>Day 2</h3>
+      
+      </div>
+      <br><br>
+  
+  
+  <div class="card" style="width: 80%">
+      <h3>Day 3</h3>
+      
+      </div>
+      <br><br>
   
   
   
@@ -126,25 +166,24 @@
   
   
   
-  </center></div>  
-    
-  
+  </center></div>    
 
 
 <!-- ===========================--] /Content [=================================== -->
     <!---==== JavaScript ====--->
+
     <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-app.js"></script>
-    <script defer src="https://www.gstatic.com/firebasejs/7.6.1/firebase-auth.js"></script>
-    <script defer src="https://www.gstatic.com/firebasejs/7.6.1/firebase-firestore.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
-    <script defer src="js/script.js"></script>
-    
+<script defer src="https://www.gstatic.com/firebasejs/7.6.1/firebase-auth.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/7.6.1/firebase-firestore.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+<script defer src="js/admin.js"></script>
+
     <!-- JQuery --><script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <!-- Popper --><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <!-- Bootstrap --><script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <!-- Eon Styles --><script src="https://rohinarya12.github.io/eonstyles/new/eon.js"></script>
     <!-- Daemonite --><script src="daemonite/material.min.js"></script>
-    <!-- Waves --><script src="daemonite/waves.min.js"></script><script>addWaves();function addWaves(){ Waves.attach('.eon-contained', ['waves-button', 'waves-light']);Waves.attach('.waves', ['waves-button']);Waves.attach('.eon-outlined', ['waves-button']);Waves.attach('.eon-text', ['waves-button']);var config = {duration: 250}; Waves.init(config);}</script>
+    <!-- Waves --><script src="daemonite/waves.min.js"></script><script>addWaves();function addWaves(){ Waves.attach('.eon-contained', ['waves-button', 'waves-light']);Waves.attach('.eon-outlined', ['waves-button']);Waves.attach('.eon-text', ['waves-button']);var config = {duration: 250}; Waves.init(config);}</script>
     <!-- Snackbar --><script src="daemonite/snackbar.min.js"></script><style>.snackbar-container {padding-top: 8px !important;padding-bottom: 8px !important;border-radius: 8px !important;max-width: 8723789253786352614975678392738649502976483528059748327952px;}</style>
 
 </body>

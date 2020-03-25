@@ -16,6 +16,18 @@ db = firebase.firestore()
 
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
+
+        if (user.email == 'rohin.arya@ucc.on.ca') {
+
+            Snackbar.show({
+                text: 'Admin account detected. Go to teacher panel?',
+                actionText: 'Go',
+                onActionClick: function (element) {
+                    $(element).css('opacity', 0); transfer('admin.html')
+                }
+            })
+        }
+
         document.getElementById('signed').style.display = 'block'
         document.getElementById('unsigned').style.display = 'none'
     } else {
@@ -34,7 +46,8 @@ function signin() {
 
         // ...
     }).catch(function (error) {
-        error(error.message)
+        $('#errorModal').modal('toggle')
+        document.getElementById('erorrModalMsg').innerHTML = error
     });
 
 }
@@ -63,5 +76,4 @@ var chart = new Chart(ctx, {
     // Configuration options go here
     options: {}
 })
-
 
