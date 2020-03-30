@@ -46,21 +46,15 @@
     font-family: 'Roboto',arial,sans-serif;
   }
   
-  html, body {
-    height: 100%;
+  
+
+  .grid-container {
+    display: inline-grid;
+    grid-template-columns: auto auto auto;
+    padding: 10px;
   }
   
-  body {
-    background-color: #f0f0f0;
-    display: -webkit-box;
-    display: flex;
-    -webkit-box-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-            justify-content: center;
+  .grid-item {
+    padding: 20px;
+
   }
-  
-  button ~ button {
-    margin-left: 20px;
-  }
-  

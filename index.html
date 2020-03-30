@@ -25,9 +25,54 @@
     <div class="modal fade bd-example-modal-sm" id="errorModal" tabindex="-1" role="dialog" aria-hidden="true"><div class="modal-dialog modal-sm" role="document"><div class="modal-content"><div class="modal-header"><h3>Error</h3></div><h5 id="erorrModalMsg" class="modal-body">Unable to complete process.</h5><div class="modal-footer"><button type="button" class="waves btn-old-text" data-dismiss="modal">dismiss</button></div></div></div></div>
     <div style="z-index: 20000049108509173268563785623467823478623478278997819871982498714;" class="modal fade bd-example-modal-sm" id="eonloaderelement" tabindex="-1" role="dialog" aria-hidden="true"><div class="modal-dialog modal-sm modal-dialog-centered" role="document"><div style="display: inline-block; border-radius: 400px; width: 150px" class="modal-content centered"><div class="modal-body"><center><div class="progress-circular"><div class="progress-circular-wrapper"><div class="progress-circular-inner"><div class="progress-circular-left"><div class="progress-circular-spinner"></div></div><div class="progress-circular-gap"></div><div class="progress-circular-right"><div class="progress-circular-spinner"></div></div></div></div></div></center></div></div></div></div>
 
+
+    <div class="modal fade" id="workoutmodal" tabindex="-1" role="dialog" aria-hidden="true"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><h3 id="workoutname"></h3></div><div class="modal-body">
+
+     <p id="workoutdescription"></p>
+
+      <div class="row">
+        <div class="col-sm">
+          <div class="card">
+            <div class="card-body">
+            <center>
+              <h3 id="reps">Num</h3>
+              <p>Reps</p>
+            </center>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm">
+          <div class="card">
+            <div class="card-body">
+            <center>
+              <h3 id="sets">Num</h3>
+              <p>Sets</p>
+            </center>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm">
+          <div class="card">
+            <div class="card-body">
+            <center>
+              <h3 id="rest">Num</h3>
+              <p>Rest</p>
+            </center>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+<br><br>
+<center>
+<button data-dismiss="modal" onclick="Snackbar.show({text: 'Workout completed!'})" class="eon-outlined">complete workout</button>
+</center>
+<br><br>
+    </div><div class="modal-footer"><button type="button" class="waves eon-text" data-dismiss="modal">close</button></div></div></div></div>
+  
+
 <!-- ===========================--] Content [=================================== -->
     
-
 
 
 <div class="animated fadeIn centered" style="display: none;" id="unsigned">
@@ -55,34 +100,34 @@
 
   <div class="animated fadeIn" style="display: none;" id="signed">
   <center>
-      <header style='border-radius: 0px 0px 30px 30px; background-color: #ffdbef' class="animated fadeInDown shadow-sm navbar navbar-expand navbar-light flex-column flex-md-row bd-navbar">
-          <a class="navbar-brand mr-0 mr-md-2" href="/">
+    <header style='border-radius: 0px 0px 30px 30px; background-color: #ffdbef' class="animated fadeInDown shadow-sm navbar navbar-expand navbar-light flex-column flex-md-row bd-navbar">
+      <a class="navbar-brand mr-0 mr-md-2" href="/">
+      
+      
+      </a>
+    
+      <div class="navbar-nav-scroll">
+        <ul class="navbar-nav bd-navbar-nav flex-row">
           
-          
-          </a>
-        
-          <div class="navbar-nav-scroll">
-            <ul class="navbar-nav bd-navbar-nav flex-row">
-              
+        </ul>
+        <img id="logoimg" class="animated zoomIn" style="width: 54px;" src="https://upload.wikimedia.org/wikipedia/en/thumb/7/7a/Upper_Canada_College_Crest.svg/1200px-Upper_Canada_College_Crest.svg.png" alt="">
+        <img id="logoimg" class="animated zoomIn" style="width: 84px;" src="assets/logo.png" alt="">
+      </div>
+    
+      <ul class="navbar-nav ml-md-auto">
+          <ul class="nav nav-justified " id="justifiedTab" role="tablist">
+              <li class="nav-item">
+                <a style="text-decoration: none;" class="waves btn-old-text" aria-controls="home" aria-selected="true"  data-toggle="tab" href="#home" id="home-tab" role="tab">Home</a>
+              </li>
+              <li class="nav-item">
+                <a style="text-decoration: none;" class="waves btn-old-text" aria-controls="profile" aria-selected="false" data-toggle="tab" href="#profile" id="profile-tab" role="tab">Profile</a>
+              </li>
+              <li class="nav-item">
+                <a style="text-decoration: none;" class="waves btn-old-text" aria-controls="contact" aria-selected="false" data-toggle="tab" href="#contact" id="contact-tab" role="tab">More</a>
+              </li>
             </ul>
-            <img id="logoimg" class="animated zoomIn" style="width: 54px;" src="https://upload.wikimedia.org/wikipedia/en/thumb/7/7a/Upper_Canada_College_Crest.svg/1200px-Upper_Canada_College_Crest.svg.png" alt="">
-            <img id="logoimg" class="animated zoomIn" style="width: 84px;" src="assets/logo.png" alt="">
-          </div>
-        
-          <ul class="navbar-nav ml-md-auto">
-              <ul class="nav nav-justified " id="justifiedTab" role="tablist">
-                  <li class="nav-item">
-                    <a style="text-decoration: none;" class="waves btn-old-text" aria-controls="home" aria-selected="true"  data-toggle="tab" href="#home" id="home-tab" role="tab">Home</a>
-                  </li>
-                  <li class="nav-item">
-                    <a style="text-decoration: none;" class="waves btn-old-text" aria-controls="profile" aria-selected="false" data-toggle="tab" href="#profile" id="profile-tab" role="tab">Profile</a>
-                  </li>
-                  <li class="nav-item">
-                    <a style="text-decoration: none;" class="waves btn-old-text" aria-controls="contact" aria-selected="false" data-toggle="tab" href="#contact" id="contact-tab" role="tab">More</a>
-                  </li>
-                </ul>
-          </ul>    
-        </header>
+      </ul>    
+    </header>
   
   <div class="tab-content" id="justifiedTabContent">
     <div aria-labelledby="home-tab" class="tab-pane fade show active" id="home" role="tabpanel">
@@ -96,31 +141,69 @@
   <div class="row">
   <div class="col-sm">
   
-          <button onclick="thing()" type="button" style=" height: 38px; border-radius: 208px;" class="animated pulse infinite waves btn-old-primary">+ NEW</button>
+          
   </div>
   
   </div>
   
+<br><br>
+<div style="width: 80%;" class="card">
+  <div class="card-body">
+      
+    <h2>Record A Workout</h2>
+    <br>
+
+<div id="workouts">
+
+
+  </div>
+</div>
+</div>
+
   <br><br>
   
-  <div style="width: 80%" class="card">
+  <div style="display: none; width: 80%" class="card">
       <div class="card-body">
           <canvas id="myChart"></canvas>
-  
-  
-          
   
   
       </div>
   </div>
   
   
-  
+  <br><br><br>
   
   
   
     </div>
-    <div aria-labelledby="profile-tab" class="tab-pane fade" id="profile" role="tabpanel">...</div>
+    <div aria-labelledby="profile-tab" class="tab-pane fade" id="profile" role="tabpanel">
+
+      <br>
+  
+  <h1>Profile</h1>
+  <h5>Your S.A.S. profile</h5>
+  <hr style="width: 48%">
+
+<center>
+<div style="display: inline-block;" class="card">
+  <div class="card-body">
+
+    <h3 id="username1">Loading Name</h3>
+    <h5 id="useremail1">Loading Email</h5>
+
+    <br><br>
+
+    <img style="border-radius: 20000px;" class="shadow" id="pfp1" alt="Loading Profile Photo...">
+
+    <br><br>
+
+    <a onclick="signout()" class="eon-contained">sign out</a>
+
+  </div>
+</div>
+</center>
+
+    </div>
     <div aria-labelledby="contact-tab" class="tab-pane fade" id="contact" role="tabpanel">...</div>
   </div>
   

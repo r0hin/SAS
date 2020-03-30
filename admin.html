@@ -24,7 +24,7 @@
     <div class="modal fade bd-example-modal-sm" id="errorModal" tabindex="-1" role="dialog" aria-hidden="true"><div class="modal-dialog modal-sm" role="document"><div class="modal-content"><div class="modal-header"><h3>Error</h3></div><h5 id="erorrModalMsg" class="modal-body">Unable to complete process.</h5><div class="modal-footer"><button type="button" class="waves btn-old-text" data-dismiss="modal">dismiss</button></div></div></div></div>
     <div style="z-index: 20000049108509173268563785623467823478623478278997819871982498714;" class="modal fade bd-example-modal-sm" id="eonloaderelement" tabindex="-1" role="dialog" aria-hidden="true"><div class="modal-dialog modal-sm modal-dialog-centered" role="document"><div style="display: inline-block; border-radius: 400px; width: 150px" class="modal-content centered"><div class="modal-body"><center><div class="progress-circular"><div class="progress-circular-wrapper"><div class="progress-circular-inner"><div class="progress-circular-left"><div class="progress-circular-spinner"></div></div><div class="progress-circular-gap"></div><div class="progress-circular-right"><div class="progress-circular-spinner"></div></div></div></div></div></center></div></div></div></div>
 
-    <div class="modal fade" id="setmodal" tabindex="-1" role="dialog" aria-hidden="true"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><h3>Create Set</h3></div><div class="modal-body">
+    <div class="modal fade" id="setmodal" tabindex="-1" role="dialog" aria-hidden="true"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><h3>Create Workout</h3></div><div class="modal-body">
 
       <br><br>
   
@@ -58,26 +58,83 @@
         <br><br>
   
         <div class="floating-label textfield-box">
-          <label for="set4">Reps</label>
-          <input class="form-control" id="set4" type="text"></input>
+          <label for="set5">Reps</label>
+          <input class="form-control" id="set5" type="text"></input>
         </div>
   
         <br><br>
   
         <div class="floating-label textfield-box">
-          <label for="set5">Reps in Reserve</label>
-          <input class="form-control" id="set5" type="text"></input>
+          <label for="set6">Reps in Reserve</label>
+          <input class="form-control" id="set6" type="text"></input>
+        </div>
+<br><br>
+        <div class="floating-label textfield-box">
+          <label for="set7">Day</label>
+          <input placeholder="example: 1" class="form-control" id="set7" type="text"></input>
         </div>
   
   
-  <br><br>
-  
-  
-  
-  
-      <br><br>
+  <br><br><br><br>
   
     </div><div class="modal-footer"><button type="button" class="waves eon-text" data-dismiss="modal">Cancel</button><button type="button" onclick="createset()" class="waves eon-contained" data-dismiss="modal">create</button></div></div></div></div>
+  
+
+
+    <div class="modal fade" id="editmodal" tabindex="-1" role="dialog" aria-hidden="true"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><h3>Edit Workout</h3></div><div class="modal-body">
+
+      <br><br>
+  
+   
+      <div class="floating-label textfield-box has-value">
+          <label for="set1">Set Name</label>
+          <input class="form-control" id="newset1" placeholder="example: Squat Series" type="text">
+        </div>
+  
+        <br><br>
+  
+        <div class="floating-label textfield-box has-value">
+          <label for="set2">Notes</label>
+          <textarea class="form-control" id="newset2" placeholder="example: Speak with coach to find variation for you." type="text"></textarea>
+        </div>
+  
+        <br><br>
+  
+        <div class="floating-label textfield-box has-value">
+          <label for="set3">Rest</label>
+          <input class="form-control" id="newset3" type="text"></input>
+        </div>
+  
+        <br><br>
+  
+        <div class="floating-label textfield-box has-value">
+          <label for="set4">Sets</label>
+          <input class="form-control" id="newset4" type="text"></input>
+        </div>
+  
+        <br><br>
+  
+        <div class="floating-label textfield-box has-value">
+          <label for="set5">Reps</label>
+          <input class="form-control" id="newset5" type="text"></input>
+        </div>
+  
+        <br><br>
+  
+        <div class="floating-label textfield-box has-value">
+          <label for="set6">Reps in Reserve</label>
+          <input class="form-control" id="newset6" type="text"></input>
+        </div>
+<br><br>
+        <div class="floating-label textfield-box has-value">
+          <label for="set7">Day</label>
+          <input placeholder="example: 1" class="form-control" id="newset7" type="text"></input>
+        </div>
+  
+  
+  <br><br><br><br>
+  
+    </div><div class="modal-footer"><button type="button" class="waves eon-text" data-dismiss="modal">Cancel</button><button type="button" id="editbutton" class="waves eon-contained" data-dismiss="modal">edit</button></div></div></div></div>
   
 
 <!-- ===========================--] Content [=================================== -->
@@ -105,7 +162,7 @@
                     <a style="text-decoration: none;" class="waves btn-old-text" aria-controls="home" aria-selected="true"  data-toggle="tab" href="#home" id="home-tab" role="tab">Home</a>
                   </li>
                   <li class="nav-item">
-                    <a style="text-decoration: none;" class="waves btn-old-text" aria-controls="profile" aria-selected="false" data-toggle="tab" href="#profile" id="profile-tab" role="tab">Profile</a>
+                    <a style="text-decoration: none;" class="waves btn-old-text" aria-controls="profile" aria-selected="false" data-toggle="tab" href="#profile" id="profile-tab" role="tab">Students</a>
                   </li>
                   <li class="nav-item">
                     <a style="text-decoration: none;" class="waves btn-old-text" aria-controls="contact" aria-selected="false" data-toggle="tab" href="#contact" id="contact-tab" role="tab">More</a>
@@ -128,40 +185,35 @@
   <div style="width: 80%" class="card">
       <div class="card-body">
   
-          <h3>Sets</h3>
-          <button data-target="#setmodal" data-toggle="modal" class="waves btn-old-text">New Set</button>
+          <h3>Created Workouts</h3>
+          <button data-target="#setmodal" data-toggle="modal" class="eon-contained">New Workout</button>
       </div>
   </div>
   
   <br><br>
   
-  <div class="card" style="width: 80%">
-  <h3>Day 1</h3>
+<div id="sets">
+
+
+
+
+</div>
   
-  </div>
-  <br><br>
-  
-  
-  <div class="card" style="width: 80%">
-      <h3>Day 2</h3>
-      
-      </div>
-      <br><br>
-  
-  
-  <div class="card" style="width: 80%">
-      <h3>Day 3</h3>
-      
-      </div>
-      <br><br>
-  
-  
-  
-  
+    
   
     </div>
     <div aria-labelledby="profile-tab" class="tab-pane fade" id="profile" role="tabpanel">...</div>
-    <div aria-labelledby="contact-tab" class="tab-pane fade" id="contact" role="tabpanel">...</div>
+    <div aria-labelledby="contact-tab" class="tab-pane fade" id="contact" role="tabpanel">
+
+
+<center>
+  <br><br>
+
+<button onclick="transfer('index.html')" class="eon-contained">Return to Student View</button>
+
+</center>
+
+    </div>
   </div>
   
   
