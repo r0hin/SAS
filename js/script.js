@@ -17,7 +17,7 @@ db = firebase.firestore()
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
 
-        if (user.email == 'rohin.arya@ucc.on.ca') {
+        if (user.email == 'rohin.arya@ucc.eon.ca') {
 
             Snackbar.show({
                 text: 'Admin account detected. Go to teacher panel?',
@@ -35,6 +35,7 @@ firebase.auth().onAuthStateChanged(function (user) {
         document.getElementById('useremail1').innerHTML = user.email
         document.getElementById('pfp1').src = user.photoURL
 
+        $('#workouts').empty()
         loadstuff()
 
     } else {
@@ -173,3 +174,13 @@ function doSort() {
     </div>
 <br>
   </div>*/
+
+const urlParams = new URLSearchParams(window.location.search);
+const myParam = urlParams.get('v')
+
+if (myParam == 'a') {
+    Snackbar.show({
+        text: 'No access. More > Report a bug if you think its an error'
+    })
+    window.history.pushState(null, null, 'index.html')
+}

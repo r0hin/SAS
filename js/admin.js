@@ -18,11 +18,11 @@ db = firebase.firestore()
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
 
-        if (user.email == 'rohin.arya@ucc.on.ca') {
+        if (user.email == 'rohin.arya@ucc.eon.ca') {
             setup()
         }
         else {
-            window.location.replace('index.html')
+            window.location.replace('index.html?v=a')
         }
     } else {
         window.location.replace('index.html')
