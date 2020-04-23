@@ -17,7 +17,7 @@ db = firebase.firestore()
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
 
-        if (user.email == 'rohin.arya@ucc.eon.ca') {
+        if (user.email == 'rohin.arya@ucc.on.ca') {
 
             Snackbar.show({
                 text: 'Admin account detected. Go to teacher panel?',
