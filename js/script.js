@@ -17,8 +17,9 @@ db = firebase.firestore()
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
 
-        if (user.email == 'rohin.arya@ucc.on.ca') {
+        window.user = user
 
+        if (user.email == 'rohin.arya@ucc.on.ca') {
             Snackbar.show({
                 text: 'Admin account detected. Go to teacher panel?',
                 actionText: 'Go',
@@ -28,15 +29,31 @@ firebase.auth().onAuthStateChanged(function (user) {
             })
         }
 
+        db.collection('users').doc(user.uid).get().then(function(doc) {
+            if (doc.exists) {
+            }
+            else {
+                db.collection('users').doc(user.uid).set({
+                    name: user.displayName,
+                    email: user.email,
+                    pfp: user.photoURL,
+                    uid: user.uid
+                })
+            }
+
+            $('#workouts').empty()
+            loadstuff()
+
+        })
+
+
+
         document.getElementById('signed').style.display = 'block'
         document.getElementById('unsigned').style.display = 'none'
 
         document.getElementById('username1').innerHTML = user.displayName
         document.getElementById('useremail1').innerHTML = user.email
         document.getElementById('pfp1').src = user.photoURL
-
-        $('#workouts').empty()
-        loadstuff()
 
     } else {
         document.getElementById('unsigned').style.display = 'block'
@@ -115,9 +132,25 @@ function openworkout(id) {
 
 function loadstuff() {
 
+    db.collection('users').doc(user.uid).get().then(function(doc) {
+        if (doc.data().active == undefined) {
+            window.activeworksout = []
+        }
+        else {
+            window.activeworksout = doc.data().active
+        }
+    })
+
+
     db.collection('sets').get().then(function (querySnapshot) {
         querySnapshot.forEach(function (doc) {
 
+            isactive = false
+            for (let i = 0; i < activeworksout.length; i++) {
+                if (doc.id == activeworksout[i]) {
+                    isactive = true
+                }
+            }
 
             b = document.createElement('div')
             b.classList.add('grid-item')
@@ -126,24 +159,29 @@ function loadstuff() {
 
             if ($('#' + doc.data().day).length > 0) {
 
-                document.getElementById('content' + doc.data().day).appendChild(b)
+                if (isactive) {
+                    document.getElementById('content' + doc.data().day).appendChild(b)
+                }
+                
 
             } else {
 
                 a = document.createElement('div')
                 a.id = doc.data().day
-                a.innerHTML = '<div class="card"><center><h3>Day ' + doc.data().day + '</h3></center>     <div style="width: 90%; border: 1px solid rgb(133, 133, 133);" id="content' + doc.data().day + '" class="grid-container">     </div> <br></div><br><br>'
-
-                document.getElementById('workouts').appendChild(a)
+                a.innerHTML = '<div class="card"><center><br><h3>Day ' + doc.data().day + '</h3></center><div style="width: 90%;" id="content' + doc.data().day + '" class="grid-container">     </div> <br></div><br><br>'
 
 
-                document.getElementById('content' + doc.data().day).appendChild(b)
+                if (isactive) {
+                    document.getElementById('workouts').appendChild(a)
+                    document.getElementById('content' + doc.data().day).appendChild(b)
+                }
 
                 doSort()
 
             }
 
         })
+        addWaves()
     })
 
 }

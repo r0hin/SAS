@@ -18,6 +18,8 @@ db = firebase.firestore()
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
 
+        window.user = user
+
         if (user.email == 'rohin.arya@ucc.on.ca') {
             setup()
         }
@@ -31,6 +33,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 
 
 function setup() {
+    loadusers()
     loadsets()
     document.getElementById('signed').style.display = 'block'
 }
@@ -174,3 +177,88 @@ function doSort() {
     });
 }
 
+
+function loadusers() {
+    db.collection('users').get().then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            
+            c = document.createElement('li')
+            c.classList.add('list-group-item')
+            c.classList.add('d-flex')
+            c.classList.add('justify-content-between')
+            c.classList.add('align-items-center')
+            fasd = doc.data().active
+            if (fasd == undefined) {
+                fasd = []
+            }
+            sessionStorage.setItem('nextuser', JSON.stringify(fasd))
+            addworkoutfunc = "addworkout('" + doc.data().uid + "', '" + doc.data().name + "')"
+            c.innerHTML = '<div><img class="shadow-sm" style="width: 36px; border-radius: 36px; margin-right: 8px;" src="' + doc.data().pfp + '" alt=""> ' + doc.data().name + ' <span class="chip">' + doc.data().email + '</span></div>             <button onclick="' + addworkoutfunc + '" class="eon-text">assign workouts</button>'
+
+            document.getElementById('userlist').appendChild(c)
+
+        })
+
+        addWaves()
+    })
+}
+
+function addworkout(id, name) {
+    $("#selections").empty()
+    active = sessionStorage.getItem('nextuser')
+    active = JSON.parse(active)
+    document.getElementById('assigntitle').innerHTML = 'Modify Assignments for ' + name + '.'
+    $("#assignmodal").modal('toggle')
+    document.getElementById('modifybtn').onclick = function() {
+        savechanges(id)
+    }
+
+    db.collection('sets').get().then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            activetext = ''
+            d = document.createElement('div')
+            d.classList.add('form-check')
+            for (let i = 0; i < active.length; i++) {
+                if (active[i] == doc.id) {
+                    activetext = 'checked'
+                }
+                
+            }
+    
+
+            d.innerHTML = '  <input ' + activetext + ' class="form-check-input" type="checkbox" value="" id="' + doc.id + '"><label class="form-check-label" for="' + doc.id + '">' + doc.data().name + '</label>'
+            
+            document.getElementById('selections').appendChild(d)
+
+
+
+        })
+    })
+
+}
+function savechanges(id) {
+    newarray = []
+
+    db.collection('sets').get().then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+
+            bam = document.getElementById(doc.id).checked
+            if (bam) {
+                newarray.push(doc.id)
+            }
+
+        })
+
+        db.collection('users').doc(id).update({
+            active: newarray
+        }).then(function() {
+            Snackbar.show({text: "Successfully modified user's active workouts."})
+        })
+
+    })
+
+    
+
+
+
+}
