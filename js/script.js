@@ -19,7 +19,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 
         window.user = user
 
-        if (user.email == 'rohin.arya@ucc.on.ca') {
+        if (user.email == 'rohin.arya@ucc.on.ca' || user.email == 'lbuttery@ucc.on.ca') {
             Snackbar.show({
                 text: 'Admin account detected. Go to teacher panel?',
                 actionText: 'Go',
