@@ -141,7 +141,7 @@ function loadsets() {
             b.style.width = '80%'
             editFunc = "prepareedit('" + doc.id + "')"
             deleteFunc = "deletething('" + doc.id + "')"
-            b.innerHTML = '<div class="card-body"><h3>' + doc.data().name + '</h3><h5>Notes: ' + doc.data().notes + '</h5><h5>Reps: ' + doc.data().reps + '</h5><h5>Rest: ' + doc.data().rest + '</h5><h5>RIR: ' + doc.data().rir + '</h5><h5>Sets: ' + doc.data().sets + '</h5><center><button onclick="' + editFunc + '" class="eon-contained">edit</button><button onclick="' + deleteFunc + '" class="eon-contained">delete</button></center></div>'
+            b.innerHTML = '<div class="card-body"><h3>' + doc.data().name + '</h3><h5>Notes: ' + doc.data().notes + '</h5><h5>Reps: ' + doc.data().reps + '</h5><h5>Rest: ' + doc.data().rest + '</h5><h5>RIR: ' + doc.data().rir + '</h5><h5>Sets: ' + doc.data().sets + '</h5><center><button onclick="' + editFunc + '" class="eon-contained">edit</button><div class="divid"></div><button onclick="' + deleteFunc + '" class="eon-contained">delete</button></center></div>'
 
             if ($('#' + doc.data().day).length > 0) {
 
@@ -151,7 +151,7 @@ function loadsets() {
 
                 a = document.createElement('div')
                 a.id = doc.data().day
-                a.innerHTML = '<div class="card" style="width: 80%; padding: 12px;"><div id="content' + doc.data().day + '" class="card-body"><h3>Day ' + doc.data().day + '</h3></div></div><br><br>'
+                a.innerHTML = '<div style="width: 80%; padding: 12px;"><div id="content' + doc.data().day + '" class="card-body"><h3>Day ' + doc.data().day + '</h3></div></div><br><br>'
 
                 document.getElementById('sets').appendChild(a)
 
@@ -163,6 +163,7 @@ function loadsets() {
             }
 
         })
+        addWaves()
     })
 
 }
@@ -193,7 +194,8 @@ function loadusers() {
             }
             sessionStorage.setItem('nextuser', JSON.stringify(fasd))
             addworkoutfunc = "addworkout('" + doc.data().uid + "', '" + doc.data().name + "')"
-            c.innerHTML = '<div><img class="shadow-sm" style="width: 36px; border-radius: 36px; margin-right: 8px;" src="' + doc.data().pfp + '" alt=""> ' + doc.data().name + ' <span class="chip">' + doc.data().email + '</span></div>             <button onclick="' + addworkoutfunc + '" class="eon-text">assign workouts</button>'
+            viewcompletefunc = "viewComplete('" + doc.data().uid + "')"
+            c.innerHTML = '<div><img class="shadow-sm" style="width: 36px; border-radius: 36px; margin-right: 8px;" src="' + doc.data().pfp + '" alt=""> ' + doc.data().name + ' <span class="chip">' + doc.data().email + '</span></div>        <button onclick="' + viewcompletefunc + '" class="eon-text">view completed</button>     <button onclick="' + addworkoutfunc + '" class="eon-text">assign workouts</button>'
 
             document.getElementById('userlist').appendChild(c)
 
@@ -201,6 +203,10 @@ function loadusers() {
 
         addWaves()
     })
+}
+
+function viewComplete(uid) {
+
 }
 
 function addworkout(id, name) {
@@ -256,9 +262,39 @@ function savechanges(id) {
         })
 
     })
+}
 
-    
+function viewComplete(uid) {
+    $('#completedcontainer').empty()
+    $('#completemodal').modal('toggle')
+    db.collection('users').doc(uid).get().then(function(doc) {
+        $('#studname').html(doc.data().name + "'s completed workouts.")
+        if (doc.data().completed == undefined) {
+            o = document.createElement('p')
+            o.innerHTML = 'This user has not completed any workouts.'
+            document.getElementById('completedcontainer').appendChild(o)
+            return;
+        }
+        for (let i = 0; i < doc.data().completed.length; i++) {
+            const wid = doc.data().completed[i];
+            e = document.createElement('div')
+            e.id = wid + 'completel'
+            e.classList.add('card')
+            e.classList.add('animated')
+            e.classList.add('fadeIn')
+            document.getElementById('completedcontainer').appendChild(e)
+            document.getElementById('completedcontainer').appendChild(document.createElement('br'))
 
+            addstuff(wid, doc.data().notes[i])
+        }
 
+        
+        
+    })
+}
 
+function addstuff(wid, notes) {
+    db.collection('sets').doc(wid).get().then(function(doc) {
+        document.getElementById(wid + 'completel').innerHTML = '<div class="card-body"><h4>' + doc.data().name + '</h4><p>' + notes + '</p></div>'
+    })
 }

@@ -126,6 +126,9 @@ function openworkout(id) {
         document.getElementById('sets').innerHTML = doc.data().sets
         document.getElementById('rest').innerHTML = doc.data().sets
 
+        document.getElementById('preparebtn').onclick = function() {
+            preparecomplete(id)
+        }
 
     })
 }
@@ -135,9 +138,17 @@ function loadstuff() {
     db.collection('users').doc(user.uid).get().then(function(doc) {
         if (doc.data().active == undefined) {
             window.activeworksout = []
+            document.getElementById('nonetext').style.display = 'block'
+            return;
         }
         else {
             window.activeworksout = doc.data().active
+            document.getElementById('nonetext').style.display = 'none'
+            if (doc.data().active.length == 0) {
+                document.getElementById('nonetext').style.display = 'block'
+                return;
+            }
+            
         }
     })
 
@@ -155,7 +166,7 @@ function loadstuff() {
             b = document.createElement('div')
             b.classList.add('grid-item')
             workoutfunc = "openworkout('" + doc.id + "')"
-            b.innerHTML = '<button onclick="' + workoutfunc + '" class="eon-outlined">' + doc.data().name + '</button>'
+            b.innerHTML = '<button id="' + doc.id + 'btn" onclick="' + workoutfunc + '" class="eon-outlined">' + doc.data().name + '</button>'
 
             if ($('#' + doc.data().day).length > 0) {
 
@@ -168,7 +179,7 @@ function loadstuff() {
 
                 a = document.createElement('div')
                 a.id = doc.data().day
-                a.innerHTML = '<div class="card"><center><br><h3>Day ' + doc.data().day + '</h3></center><div style="width: 90%;" id="content' + doc.data().day + '" class="grid-container">     </div> <br></div><br><br>'
+                a.innerHTML = '<div><center><br><h3>Day ' + doc.data().day + '</h3></center><div style="width: 90%;" id="content' + doc.data().day + '" class="grid-container">     </div> <br></div><br><br>'
 
 
                 if (isactive) {
@@ -221,4 +232,29 @@ if (myParam == 'a') {
         text: 'No access. More > Report a bug if you think its an error'
     })
     window.history.pushState(null, null, 'index.html')
+}
+
+function preparecomplete(id) {
+    $('#completename').html('complete workout')
+    $('#workoutmodal').modal('toggle')
+    $('#modal').modal('toggle')
+    document.getElementById('preparebtn2').onclick = function() {
+        finishworkout(id)
+    }
+}
+
+function finishworkout(id) {
+    notes = document.getElementById('exampleFloatingBox4').value
+    document.getElementById('exampleFloatingBox4').innerHTML = ''
+
+    db.collection('users').doc(user.uid).update({
+        completed: firebase.firestore.FieldValue.arrayUnion(id),
+        notes: firebase.firestore.FieldValue.arrayUnion(notes),
+    })
+    db.collection('users').doc(user.uid).update({
+        active: firebase.firestore.FieldValue.arrayRemove(id)
+    }).then(function() {
+        Snackbar.show({text: "Workout marked as completed."})
+        $('#' + id + 'btn').remove()
+    })
 }

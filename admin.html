@@ -15,6 +15,7 @@
     <!-- Dameonite / Bootstrap--><link rel="stylesheet" href="daemonite/material.min.css">
     <!-- Waves --><link rel="stylesheet" href="daemonite/waves.min.css">
     <!-- Snackbar --><link rel="stylesheet" href="daemonite/snackbar.min.css">
+    <!-- CSS --> <link rel="stylesheet" href="css/style.css">
 
 
 </head>
@@ -23,6 +24,15 @@
 
     <div class="modal fade bd-example-modal-sm" id="errorModal" tabindex="-1" role="dialog" aria-hidden="true"><div class="modal-dialog modal-sm" role="document"><div class="modal-content"><div class="modal-header"><h3>Error</h3></div><h5 id="erorrModalMsg" class="modal-body">Unable to complete process.</h5><div class="modal-footer"><button type="button" class="waves btn-old-text" data-dismiss="modal">dismiss</button></div></div></div></div>
     <div style="z-index: 20000049108509173268563785623467823478623478278997819871982498714;" class="modal fade bd-example-modal-sm" id="eonloaderelement" tabindex="-1" role="dialog" aria-hidden="true"><div class="modal-dialog modal-sm modal-dialog-centered" role="document"><div style="display: inline-block; border-radius: 400px; width: 150px" class="modal-content centered"><div class="modal-body"><center><div class="progress-circular"><div class="progress-circular-wrapper"><div class="progress-circular-inner"><div class="progress-circular-left"><div class="progress-circular-spinner"></div></div><div class="progress-circular-gap"></div><div class="progress-circular-right"><div class="progress-circular-spinner"></div></div></div></div></div></center></div></div></div></div>
+    
+    <div class="modal fade" id="completemodal" tabindex="-1" role="dialog" aria-hidden="true"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><h3 id="studname"></h3></div><div class="modal-body">
+
+      <div id="completedcontainer">
+
+
+      </div>
+  
+    </div><div class="modal-footer"><button type="button" class="waves eon-text" data-dismiss="modal">done</button></div></div></div></div>
 
     <div class="modal fade" id="setmodal" tabindex="-1" role="dialog" aria-hidden="true"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><h3>Create Workout</h3></div><div class="modal-body">
 
@@ -79,8 +89,6 @@
   
     </div><div class="modal-footer"><button type="button" class="waves eon-text" data-dismiss="modal">Cancel</button><button type="button" onclick="createset()" class="waves eon-contained" data-dismiss="modal">create</button></div></div></div></div>
   
-
-
     <div class="modal fade" id="editmodal" tabindex="-1" role="dialog" aria-hidden="true"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><h3>Edit Workout</h3></div><div class="modal-body">
 
       <br><br>

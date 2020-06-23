@@ -58,3 +58,12 @@
     padding: 20px;
 
   }
+
+  .card {
+    border-radius: 15px !important;
+  }
+
+  .divid {
+    width: 15px;
+    display: inline-block;
+  }
